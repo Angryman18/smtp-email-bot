@@ -5,6 +5,7 @@ import "dotenv/config";
 
 const server = new SMTPServer({
   allowInsecureAuth: true,
+  authOptional: true,
   onConnect(session, cb) {
     console.log("session connected ", session.id);
     cb();
