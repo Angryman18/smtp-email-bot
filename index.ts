@@ -1,6 +1,7 @@
 // import express from "express";
 // import smtp from "smtp-server";
 import { SMTPServer } from "smtp-server";
+import 'dotenv/config'
 
 const server = new SMTPServer({
   allowInsecureAuth: true,
@@ -18,4 +19,4 @@ const server = new SMTPServer({
   },
 });
 
-server.listen(25, () => console.log("Listening on port 25"));
+server.listen(process.env.PORT, () => console.log("Listening on port ", process.env.PORT));
