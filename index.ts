@@ -6,9 +6,9 @@ import "dotenv/config";
 const server = new SMTPServer({
   allowInsecureAuth: true,
   authOptional: true,
-  onConnect(session, cb) {
+  onConnect(session, callback) {
     console.log("session connected ", session.id);
-    cb();
+    callback();
   },
   onMailFrom(address, session, callback) {
     console.log("Found address ", address.address);
@@ -19,6 +19,7 @@ const server = new SMTPServer({
     callback();
   },
   onData(stream, session, callback) {
+    stream.on('data', (data) => console.log('Data ', data.toString()))
     stream.on("end", callback);
   },
 });
